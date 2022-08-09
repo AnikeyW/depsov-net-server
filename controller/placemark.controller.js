@@ -2,8 +2,13 @@ const db = require('../db')
 
 class Placemarks {
    async getPlacemarks(req, res) {
-      const placemarks = await db.query('SELECT * FROM dps_placemark')
-      res.json(placemarks.rows)
+      try {
+         const placemarks = await db.query('SELECT * FROM dps_placemark')
+         res.json(placemarks.rows)
+      } catch (error) {
+         console.log(error)
+      }
+
    }
 
    async addPlacemark(req, res) {
